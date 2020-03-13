@@ -1,0 +1,34 @@
+name: Package
+
+on:
+  release:
+    types: [ created ]
+
+jobs:
+  # Debian package
+  ubuntu:
+    name: Package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Configure
+        run: cmake -B build --config Release .
+
+      - name: Package
+        id: package
+        run: |
+            cmake --build build --target package
+            FILE=$(ls build/*.deb | head -1)
+            echo "::set-output name=filename::$FILE"
+            echo "::set-output name=name::$(basename $FILE)"
+
+      - name: Upload
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_name: ${{ steps.package.outputs.name }}
+          asset_path: ${{ steps.package.outputs.filename }}
+          asset_content_type: application/x-deb
