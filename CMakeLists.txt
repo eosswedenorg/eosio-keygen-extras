@@ -12,12 +12,19 @@ set( PROJECT_MAINTAINER "Henrik Hautakoski <henrik@eossweden.org>")
 
 include(GNUInstallDirs)
 
+set( CMAKE_INSTALL_DATADIR ${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME} )
+
+if (WIN32)
+	# "Flat" install on windows.
+	set( CMAKE_INSTALL_DATADIR "." )
+endif (WIN32)
+
 # --------------------------------
 #  Install target
 # --------------------------------
 install(
 	DIRECTORY dict
-	DESTINATION ${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME}
+	DESTINATION ${CMAKE_INSTALL_DATADIR}
 )
 
 # --------------------------------
