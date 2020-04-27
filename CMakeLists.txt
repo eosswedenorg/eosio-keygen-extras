@@ -30,6 +30,7 @@ install(
 # --------------------------------
 #  Package
 # --------------------------------
+set( CPACK_PACKAGE_FILE_NAME "${PROJECT_NAME}-${PROJECT_VERSION}")
 
 if (UNIX)
 	set( CPACK_GENERATOR "DEB" )
