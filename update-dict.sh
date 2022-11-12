@@ -18,6 +18,9 @@ for lang in $(jq -r 'keys[]' $CONFIG); do
 		files+=( "$f" )
 	done
 
+    echo "Source files:"
+    echo ${files[@]} | tr ' ' '\n'
+
 	grep -hs ^ ${files[@]} | $BASE_DIR/generate-dict.sh > $BASE_DIR/dict/$lang
 done
 
