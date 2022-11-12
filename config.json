@@ -6,5 +6,7 @@
         "/usr/share/dict/british-english-huge",
 		"english-custom"
 	],
-	"swedish": "/usr/share/dict/swedish"
+	"swedish": "/usr/share/dict/swedish",
+    "danish": "/usr/share/dict/danish",
+    "french": "/usr/share/dict/french"
 }

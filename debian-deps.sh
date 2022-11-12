@@ -6,6 +6,8 @@ PKG=(
     wbritish
     wbritish-large
     wswedish
+    wdanish
+    wfrench
 )
 
 sudo apt-get install ${PKG[@]}
