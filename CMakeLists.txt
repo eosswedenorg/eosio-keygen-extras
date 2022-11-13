@@ -20,7 +20,7 @@ if (WIN32)
 endif (WIN32)
 
 
-list(APPEND dictionaries 
+list(APPEND dictionaries
 	english
 	danish
 	french
@@ -41,6 +41,7 @@ endforeach(dict ${dictionaries})
 # --------------------------------
 set( CPACK_PACKAGE_FILE_NAME "${PROJECT_NAME}-${PROJECT_VERSION}")
 set( CPACK_PACKAGE_CONTACT ${PROJECT_MAINTAINER} )
+set( CPACK_PACKAGE_VENDOR "Sw/eden" )
 
 # Archive specific
 set( CPACK_ARCHIVE_COMPONENT_INSTALL TRUE )
