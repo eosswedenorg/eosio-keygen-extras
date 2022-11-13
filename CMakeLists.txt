@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.5)
 
 # Project name and version
 project(eosio-keygen-extras
-	VERSION 0.1.0
+	VERSION 0.1.1
 	DESCRIPTION "extra files for eosio-keygen"
 	HOMEPAGE_URL "https://github.com/eosswedenorg/eosio-keygen-extras"
 	LANGUAGES NONE
