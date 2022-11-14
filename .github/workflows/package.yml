@@ -8,7 +8,7 @@ on:
 jobs:
   # Debian package
   ubuntu:
-    name: Package
+    name: Package (Debian)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -29,3 +29,25 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: ${{ steps.package.outputs.ASSETS }}
+
+  windows:
+    name: Package (Windows)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Configure
+        run: cmake --no-warn-unused-cli -G Ninja -B build -DCPACK_GENERATOR=NSIS -DCMAKE_BUILD_TYPE=Release .
+
+      - name: Package
+        id: package
+        shell: bash
+        run: |
+            cmake --build build --target package
+            echo ASSET=$(ls -1 build/*.exe) >> $GITHUB_OUTPUT
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: ${{ steps.package.outputs.ASSET }}
